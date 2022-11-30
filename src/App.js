@@ -1,8 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
 import CoinList from './components/CoinList/CoinList';
 import AccountBalance from './components/AccountBalance/AccountBalance';
+import AppHeader from './components/Header/AppHeader';
+import styled from 'styled-components';
 import React from 'react';
+
+
+const Div = styled.div`
+  text-align: center;
+  background-color: rgb(18, 196, 228);
+`
 
 let sum = 0;
 for(let num of [1,2,3,4,5]){
@@ -53,18 +60,11 @@ class App extends React.Component {
   render(){
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} alt="React logo" className="App-logo" />
-          <h1 className="App-title">
-            Coin Exchange
-          </h1>
-        </header>
-
+      <Div>
+        <AppHeader />
         <AccountBalance amount = {this.state.balance} />
         <CoinList coinData = {this.state.coinData} />
-        
-      </div>
+      </Div>
     );
   }
 }
