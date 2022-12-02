@@ -6,32 +6,42 @@ const Table = styled.table`
   margin: 50px auto 50px auto;
   display: inline-block;
   font-size: 1.4rem;
+  td{
+    padding: 10px;
+    background-color: #ebf7ff;
+  }
 `;
+
 
 
 export default class CoinList extends Component {
   render() {
     return (
-        <Table>
-        <thread>
+      <>
+      <Table>
+        <thead>
           <tr>
             <th>Name</th>
             <th>Ticker</th>
             <th>Price</th>
+            <th>Balance</th>
+            <th>Actions</th> 
           </tr>
-        </thread>
+        </thead>
         <tbody>
           {
-            this.props.coinData.map( ({name, ticker, price}) => 
+            this.props.coinData.map( ({name, ticker, price, balance}) => 
             <Coin key={ticker} 
               handleRefresh={this.props.handleRefresh} 
               name={name} 
-              ticker={ticker} 
+              ticker={ticker}
+              balance = {balance} 
               price={price} />
             )
           }
         </tbody>
       </Table>
+      </>
     )
   }
 }
