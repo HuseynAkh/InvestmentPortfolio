@@ -35,6 +35,7 @@ export default class CoinList extends Component {
               handleRefresh={this.props.handleRefresh} 
               name={name} 
               ticker={ticker}
+              showBalance={this.props.showBalance}
               balance = {balance} 
               price={price} />
             )
