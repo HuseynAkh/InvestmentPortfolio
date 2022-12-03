@@ -6,7 +6,7 @@ const Section = styled.section`
   display: flex;
   flex-flow: column;
   align-items: center;
-
+  margin-top: 20px;
   font-size: 2rem;
   text-align: left;
   padding: 1.5rem 1.5rem 2rem;
