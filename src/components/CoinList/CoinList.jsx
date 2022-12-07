@@ -30,8 +30,9 @@ export default class CoinList extends Component {
         </thead>
         <tbody>
           {
-            this.props.coinData.map( ({name, ticker, price, balance}) => 
-            <Coin key={ticker} 
+            this.props.coinData.map( ({key, name, ticker, price, balance}) => 
+            <Coin key={key}
+              id={key} // as key can't be retrieved
               handleRefresh={this.props.handleRefresh} 
               name={name} 
               ticker={ticker}

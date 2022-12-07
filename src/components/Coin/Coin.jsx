@@ -19,7 +19,7 @@ export default class Coin extends Component {
         // Prevent default action of submitting the form
         event.preventDefault();
 
-        this.props.handleRefresh(this.props.ticker); 
+        this.props.handleRefresh(this.props.id); 
         
         // const randomPercentage = 0.995 + Math.random() * 0.01;
 
