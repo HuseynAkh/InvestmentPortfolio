@@ -23,11 +23,11 @@ export default function Stock(props) {
             <Td>{props.ticker}</Td>
             <Td>${props.price}</Td>
             {props.showBalance ? <Td>{props.balance}</Td> : <Td>*****</Td>}
-            <Td>
+            {/* <Td>
                 <form action="#" method="POST">
                 <button onClick={handleClick}>Refresh</button>
                 </form>
-            </Td>
+            </Td> */}
         </tr>
     );
 }

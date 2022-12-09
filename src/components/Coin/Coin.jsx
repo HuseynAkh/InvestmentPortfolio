@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const Td = styled.td`
     border: 2px solid #201129;
     width: 40vh;
-
 `;
 
 export default function Coin(props) {
@@ -23,11 +22,11 @@ export default function Coin(props) {
             <Td>{props.ticker}</Td>
             <Td>${props.price}</Td>
             {props.showBalance ? <Td>{props.balance}</Td> : <Td>*****</Td>}
-            <Td>
+            {/* <Td>
                 <form action="#" method="POST">
                 <button onClick={handleClick}>Refresh</button>
                 </form>
-            </Td>
+            </Td> */}
         </tr>
     );
 }

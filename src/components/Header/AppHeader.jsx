@@ -5,30 +5,48 @@ import styled from 'styled-components'
 const Header = styled.header`
   background-color: #282c34;
   min-height: 20vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-size: 36px;
   color: white;
 `;
 
+const Div = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-self: flex-start;
+`;
+
 const H1 = styled.h1`
-  font-size: 4rem;
+  margin: -15px 10px 10px 10px;
+  display: flex;
+  flex-direction: row;
+  font-size: 60px;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+const P = styled.p`
+  align-self: center;
+  font-size: 28px;
+  text-align: end;
 `;
 
 const Logo = styled.img`
-  height: 6rem;
+  padding: 0px 0px 17px 0px;
+  height: 3.4rem;
   pointer-events: none;
+  align-self: flex-end;
 `;
 
 export default class AppHeader extends Component {
   render() {
     return (
     <Header>
-        <Logo src={logo} alt="React logo" className="App-logo" />
+        <Div>
+          <P>Built by: </P>
+          <Logo src={logo} alt="React logo" className="App-logo" />
+        </Div>
         <H1>
-          Coin Exchange
+          Investment Portfolio
         </H1>
     </Header>
     )

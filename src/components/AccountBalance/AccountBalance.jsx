@@ -9,7 +9,7 @@ const Section = styled.section`
   margin-top: 20px;
   font-size: 2rem;
   text-align: left;
-  padding: 1.5rem 1.5rem 2rem;
+  padding: 1.5rem 1.5rem 0.3rem;
   font-family: Arial, Helvetica, sans-serif;
 `;
 
@@ -18,19 +18,20 @@ const Button = styled.button`
   justify-content: center;
   width: 10%;
   display: flex; 
-  padding: 7px;
+  padding: 7px 0px 7px 0px;
 `;
+
 
 export default function AccountBalance(props) {
   const buttonText = props.showBalance ? 'Hide Balance' : 'Show Balance';
   let content = '*******';
   if ( props.showBalance ){
-    content = <>Balance: ${props.amount}</>
+    content = <>Balance ${props.amount}</>
   }
   return (
     <Section>
-      {content}
-      <Button onClick={props.handleBalanceVis}>{buttonText}</Button>
+        {content}
+        <Button onClick={props.handleBalanceVis}>{buttonText}</Button>
     </Section>
   );
 }
