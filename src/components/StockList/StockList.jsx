@@ -1,5 +1,5 @@
 import React from 'react';
-import Coin from '../Coin/Coin';
+import Stock from '../Stock/Stock';
 import styled from 'styled-components';
 
 const Table = styled.table`
@@ -13,7 +13,8 @@ const Table = styled.table`
 `;
 
 
-export default function CoinList(props) {
+
+export default function StockList(props) {
   
   return (
     <>
@@ -29,8 +30,8 @@ export default function CoinList(props) {
       </thead>
       <tbody>
         {
-          props.coinData.map( ({key, name, ticker, price, balance}) => 
-          <Coin key={key}
+          props.stockData.map( ({key, name, ticker, price, balance}) => 
+          <Stock key={key}
             id={key} // as key can't be retrieved
             handleRefresh={props.handleRefresh} 
             name={name} 

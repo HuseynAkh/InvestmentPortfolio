@@ -2,15 +2,25 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+import './App.css';
+
 import CoinList from './components/CoinList/CoinList';
+import StockList from './components/StockList/StockList';
+
 import AccountBalance from './components/AccountBalance/AccountBalance';
 import AppHeader from './components/Header/AppHeader';
+
 
 
 
 const Div = styled.div`
   text-align: center;
   background-color: rgb(18, 196, 228);
+`
+
+const Div2 = styled.div`
+  display: flex;
+  flex: column;
 `
 
 const COIN_COUNT = 20;
@@ -21,6 +31,7 @@ function App(props) {
   const [balance, setBalance] = useState(10000);
   const [showBalance, setShowBalance] = useState(true);
   const [coinData, setCoinData] = useState([]);
+  const [stockData, setStockData] = useState([]);
   
 
   const componentDidMount = async () => {
@@ -39,9 +50,10 @@ function App(props) {
         balance: 0,
         price: formatPrice(coin.quotes['USD'].price),
       };
-    })
+    });
     // Retrieving prices
-    setCoinData(coinPriceData)
+    setCoinData(coinPriceData);
+    setStockData(stockData);
 
   } 
 
@@ -85,10 +97,17 @@ function App(props) {
       showBalance={showBalance} 
       handleBalanceVis={handleBalanceVis}/>
 
+      <Div2>
       <CoinList 
       coinData = {coinData}
       showBalance={showBalance} 
       handleRefresh={handleRefresh} />
+
+      <StockList
+      stockData = {stockData}
+      showBalance = {showBalance}
+      handleRefresh = {handleRefresh} />
+      </Div2>
     </Div>
   );
   
