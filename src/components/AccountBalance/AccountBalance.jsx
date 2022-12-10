@@ -26,7 +26,7 @@ export default function AccountBalance(props) {
   const buttonText = props.showBalance ? 'Hide Balance' : 'Show Balance';
   let content = '*******';
   if ( props.showBalance ){
-    content = <>Balance ${props.amount}</>
+    content = <>Balance: ${props.amount}</>
   }
   return (
     <Section>

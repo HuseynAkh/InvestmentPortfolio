@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logo from './logo.svg';
-import styled from 'styled-components'
+import logo2 from './logo2.svg'
+import styled from 'styled-components';
 
 const Header = styled.header`
   background-color: #282c34;
@@ -16,7 +17,7 @@ const Div = styled.div`
 `;
 
 const H1 = styled.h1`
-  margin: -15px 10px 10px 10px;
+  margin: -12px 10px 10px 10px;
   display: flex;
   flex-direction: row;
   font-size: 60px;
@@ -37,13 +38,21 @@ const Logo = styled.img`
   align-self: flex-end;
 `;
 
+const Logo2 = styled.img`
+  padding: 0px 13px 17px 0px;
+  height: 3.2rem;
+  pointer-events: none;
+  align-self: flex-end;
+`;
+
 export default class AppHeader extends Component {
   render() {
     return (
     <Header>
         <Div>
-          <P>Built using: </P>
+          <P>Powered by: </P>
           <Logo src={logo} alt="React logo" className="App-logo" />
+          <Logo2 src={logo2} alt="JavaScript logo" className="App-logo"/>
         </Div>
         <H1>
           Investment Portfolio
