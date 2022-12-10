@@ -32,6 +32,7 @@ export default function StockList(props) {
           <th>Ticker</th>
           <th>Price</th>
           <th>Balance</th>
+          <th>Value</th>
           {/* <th>Actions</th>  */}
         </tr>
       </thead>
@@ -41,9 +42,10 @@ export default function StockList(props) {
           <Td></Td>
           <Td></Td>
           <Td></Td>
+          <Td></Td>
         </tr>
         {
-          props.stockData.map( ({key, name, ticker, price, balance}) => 
+          props.stockData.map( ({key, name, ticker, price, balance, value}) => 
           <Stock key={key}
             id={key} // as key can't be retrieved
             handleRefresh={props.handleRefresh} 
@@ -51,7 +53,8 @@ export default function StockList(props) {
             ticker={ticker}
             showBalance={props.showBalance}
             balance = {balance} 
-            price={price} />
+            price={price}
+            value = {value} />
           )
         }
       </tbody>

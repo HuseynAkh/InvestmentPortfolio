@@ -22,6 +22,7 @@ export default function Coin(props) {
             <Td>{props.ticker}</Td>
             <Td>${props.price}</Td>
             {props.showBalance ? <Td>{props.balance}</Td> : <Td>*****</Td>}
+            <Td>${props.value}</Td>
             {/* <Td>
                 <form action="#" method="POST">
                 <button onClick={handleClick}>Refresh</button>

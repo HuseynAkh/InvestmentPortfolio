@@ -31,10 +31,12 @@ export default function CoinHeader(props) {
     const [coinData, setCoinData] = useState([]);
     const [coinSearch, setCoinSearch] = useState([]);
     const [balance, setBalance] = useState([]);
+    
+    const TotalVal = 0;
 
     let content = '*******';
     if (props.showBalance ){
-      content = <>$ BalanceSum</>
+      content = <>$ {TotalVal}</>
     }
 
     const componentDidMount = async () => {
@@ -50,8 +52,9 @@ export default function CoinHeader(props) {
             id: coin.id,
             name: coin.name,
             ticker: coin.symbol,
-            balance: 0,
+            balance: formatPrice(balance),
             price: formatPrice(coin.quotes['USD'].price),
+            // value: formatPrice(balance * price)
           };
         });
         // Retrieving prices

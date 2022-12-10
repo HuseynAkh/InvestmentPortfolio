@@ -35,7 +35,7 @@ const formatPrice = price => parseFloat(Number(price).toFixed(3));
 
 function App(props) {
 
-  const [balance, setBalance] = useState(10000);
+  const [balance, setBalance] = useState(0);
   const [showBalance, setShowBalance] = useState(true);
   const [coinData, setCoinData] = useState([]);
   const [stockData, setStockData] = useState([]);

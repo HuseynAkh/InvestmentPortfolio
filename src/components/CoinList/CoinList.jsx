@@ -30,6 +30,7 @@ export default function CoinList(props) {
           <th>Ticker</th>
           <th>Price</th>
           <th>Balance</th>
+          <th>Value</th>
           {/* <th>Actions</th>  */}
         </tr>
       </thead>
@@ -39,9 +40,10 @@ export default function CoinList(props) {
           <Td></Td>
           <Td></Td>
           <Td></Td>
+          <Td></Td>
         </tr>
         {
-          props.coinData.map( ({key, name, ticker, price, balance}) => 
+          props.coinData.map( ({key, name, ticker, price, balance, value}) => 
           <Coin key={key}
             id={key} // as key can't be retrieved
             handleRefresh={props.handleRefresh} 
@@ -49,7 +51,8 @@ export default function CoinList(props) {
             ticker={ticker}
             showBalance={props.showBalance}
             balance = {balance} 
-            price={price} />
+            price={price}
+            value={value} />
           )
         }
       </tbody>
