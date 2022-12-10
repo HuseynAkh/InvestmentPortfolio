@@ -39,53 +39,46 @@ export default function CoinHeader(props) {
       content = <>$ {totalVal}</>
     }
 
-    const componentDidMount = async () => {
-        const response = await axios.get('https://api.coinpaprika.com/v1/coins');
-        const coinIDs = response.data.slice(0, COIN_COUNT).map(coin => coin.id);
-        const tickerURL = 'https://api.coinpaprika.com/v1/tickers/';
-        const promises = coinIDs.map(id => axios.get(tickerURL + id));
-        const coinData = await Promise.all(promises);
-        const coinPriceData = coinData.map(function(response) {
-          const coin = response.data;
-          return {
-            key: coin.id,
-            id: coin.id,
-            name: coin.name,
-            ticker: coin.symbol,
-            balance: formatPrice(balance),
-            price: formatPrice(coin.quotes['USD'].price),
-            // value: formatPrice(balance * price)
-          };
-        });
-        // setTotalVal(parseFloat(totalVal + (balance * price))); // price changed for API wait
-        // props.totalBalance(props.balance + change);
-        // Retrieving prices
-        setCoinData(coinPriceData);
+    const queryPrice = async(ticker) =>{
+      //TEMP
+      const response = await axios.get(`https://api.coingecko.com/api/v3/search?query=${ticker}`);
+      const apiSymbol = response.data.coins[0].api_symbol;
+      const priceAccess = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${apiSymbol}&vs_currencies=usd`);
+      const price = priceAccess.data[apiSymbol].usd;
+      console.log(response.data);
+      const coinPriceData = [
+        { 
+          key: response.data.coins[0].id,
+          name: response.data.coins[0].name,
+          ticker: response.data.coins[0].symbol,
+          balance: formatPrice(balance),
+          price: formatPrice(price),
+          value: formatPrice(balance * price) 
+        },
+      ]
+      let change = formatPrice(balance * price);
+      //Data to Float & String (add/remove commas)
+      setTotalVal((formatPrice((parseFloat((totalVal).replace(/,/g, ''))) + change)).toLocaleString());
+      props.totalBalance((formatPrice((parseFloat(((props.balance) + "").replace(/,/g, ''))) + change)).toLocaleString());
+      
+      //Retrieving prices
+      let newValue = coinData.concat(coinPriceData);
+      setCoinData(newValue);
     }
 
-    useEffect(() => {
-        if (coinData.length === 0){
-          //component did mount
-          componentDidMount();
-        } else {
-          //component did update
-    
-        }
-      });
+    const handleSearchChange = (e) => {
+      setCoinSearch(e.target.value);
+    }
 
-      const handleSearchChange = (e) => {
-        setCoinSearch(e.target.value);
-      }
+    const handleBalanceChange = (e) => {
+      setBalance(e.target.value);
+    }
 
-      const handleBalanceChange = (e) => {
-        setBalance(e.target.value);
-      }
-
-      const handleCoinSearch = () => {
-        // queryPrice(coinSearch);
-        setBalance("");
-        setCoinSearch("");
-      }
+    const handleCoinSearch = () => {
+      queryPrice(coinSearch);
+      setBalance("");
+      setCoinSearch("");
+    }
 
 
 

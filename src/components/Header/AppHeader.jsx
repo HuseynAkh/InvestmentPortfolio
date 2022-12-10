@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import logo from './logo.svg';
 import logo2 from './logo2.svg'
+import logo3 from './logo3.png'
+import logo4 from './logo4.svg'
 import styled from 'styled-components';
 
 const Header = styled.header`
@@ -53,6 +55,8 @@ export default class AppHeader extends Component {
           <P>Powered by: </P>
           <Logo src={logo} alt="React logo" className="App-logo" />
           <Logo2 src={logo2} alt="JavaScript logo" className="App-logo"/>
+          <Logo2 src={logo3} alt="CoinGecko API" className="App-logo"/>
+          <Logo2 src={logo4} alt="TwelveData API" className="App-logo"/>
         </Div>
         <H1>
           Investment Portfolio

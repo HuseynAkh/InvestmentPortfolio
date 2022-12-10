@@ -40,7 +40,7 @@ function App(props) {
   const [coinData, setCoinData] = useState([]);
   const [stockData, setStockData] = useState([]);
   
-  const [balance, setBalance] = useState(0);
+  const [balance, setBalance] = useState('0');
 
   
 

@@ -38,6 +38,6 @@ export default function AccountBalance(props) {
 
 
 AccountBalance.propTypes = {
-    amount: PropTypes.number.isRequired
+    amount: PropTypes.string.isRequired
 }
 

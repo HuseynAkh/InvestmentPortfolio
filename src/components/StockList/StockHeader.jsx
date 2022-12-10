@@ -55,37 +55,38 @@ export default function StockHeader(props) {
           name: response.data.data[0].name,
           ticker: response.data.data[0].symbol,
           balance: formatPrice(balance),
-          price: formatPrice(price),
+          price: formatPrice(price), // price changed for API wait
           value: formatPrice(balance * price) // price changed for API wait
         },
       ]
-      let change = (balance * price);
-      setTotalVal(parseFloat(totalVal + change)); // price changed for API wait
-      props.totalBalance(props.balance + change);
+      let change = formatPrice(balance * price);
+      //Data to Float & String (add/remove commas)
+      setTotalVal((formatPrice((parseFloat((totalVal).replace(/,/g, ''))) + change)).toLocaleString());
+      props.totalBalance((formatPrice((parseFloat(((props.balance) + "").replace(/,/g, ''))) + change)).toLocaleString());
       
       //Retrieving prices
       let newValue = stockData.concat(stockPriceData);
       setStockData(newValue);
     }
 
-      const handleSearchChange = (e) => {
-        setStockSearch(e.target.value);
-      }
+    const handleSearchChange = (e) => {
+      setStockSearch(e.target.value);
+    }
 
-      const handleBalanceChange = (e) => {
-        setBalance(e.target.value);
-      }
+    const handleBalanceChange = (e) => {
+      setBalance(e.target.value);
+    }
 
-      const handleStockSearch = () => {
-        queryPrice(stockSearch);
-        setBalance("");
-        setStockSearch("");
-      }
+    const handleStockSearch = () => {
+      queryPrice(stockSearch);
+      setBalance("");
+      setStockSearch("");
+    }
 
 
     return (
         <>
-        <h1>Stock</h1>
+        <h1>Stocks</h1>
         <h3>{content}</h3>
         <div>
           <Input1 type="balance" placeholder="Balance" value={balance} onChange={handleBalanceChange} />
