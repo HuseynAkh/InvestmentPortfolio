@@ -9,12 +9,33 @@ import styled from 'styled-components';
 const COIN_COUNT = 20;
 const formatPrice = price => parseFloat(Number(price).toFixed(3));
 
+const Input1 = styled.input`
+  width: 48px;
+  padding: 5px;
+`;
+
+const Input2 = styled.input`
+  width: 200px;
+  padding: 5px;
+`;
+
+const Button = styled.button`
+  padding: 5px;
+`;
+
 export default function CoinHeader(props) {
     // if ( props.showBalance ){
     //   content = <>Balance ${props.amount}</>
     // }
 
     const [coinData, setCoinData] = useState([]);
+    const [coinSearch, setCoinSearch] = useState([]);
+    const [balance, setBalance] = useState([]);
+
+    let content = '*******';
+    if (props.showBalance ){
+      content = <>$ BalanceSum</>
+    }
 
     const componentDidMount = async () => {
         const response = await axios.get('https://api.coinpaprika.com/v1/coins');
@@ -47,11 +68,33 @@ export default function CoinHeader(props) {
         }
       });
 
+      const handleSearchChange = (e) => {
+        setCoinSearch(e.target.value);
+      }
+
+      const handleBalanceChange = (e) => {
+        setBalance(e.target.value);
+      }
+
+      const handleCoinSearch = () => {
+        // queryPrice(coinSearch);
+        setBalance("");
+        setCoinSearch("");
+      }
+
+
 
     return (
         <>
         <h1>Crypto</h1>
-        {/* <input ref={todoNameRef} type="text" /> */}
+        <h3>{content}</h3>
+
+        <div>
+          <Input1 type="balance" placeholder="Balance" value={balance} onChange={handleBalanceChange} />
+          <Input2 type="search" placeholder="Search Crypto" value={coinSearch} onChange={handleSearchChange} />
+          <Button onClick={handleCoinSearch}>Add to portfolio</Button>
+        </div>
+
 
         <CoinList 
           coinData = {coinData}

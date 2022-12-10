@@ -42,7 +42,7 @@ export default class AppHeader extends Component {
     return (
     <Header>
         <Div>
-          <P>Built by: </P>
+          <P>Built using: </P>
           <Logo src={logo} alt="React logo" className="App-logo" />
         </Div>
         <H1>

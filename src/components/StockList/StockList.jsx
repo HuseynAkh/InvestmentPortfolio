@@ -2,6 +2,8 @@ import React from 'react';
 import Stock from '../Stock/Stock';
 import styled from 'styled-components';
 
+
+
 const Table = styled.table`
   margin: 15px auto 50px auto;
   padding: 0px 20px 0px 15px;

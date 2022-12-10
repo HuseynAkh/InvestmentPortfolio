@@ -16,6 +16,7 @@ import StockHeader from './components/StockList/StockHeader';
 const Div = styled.div`
   text-align: center;
   background-color: rgb(18, 196, 228);
+  min-height: 150rem;
 `;
 
 const Div2 = styled.div`
@@ -38,55 +39,6 @@ function App(props) {
   const [showBalance, setShowBalance] = useState(true);
   const [coinData, setCoinData] = useState([]);
   const [stockData, setStockData] = useState([]);
-  
-
-  const componentDidMount = async () => {
-    // //Coin
-    // const response = await axios.get('https://api.coinpaprika.com/v1/coins');
-    // const coinIDs = response.data.slice(0, COIN_COUNT).map(coin => coin.id);
-    // const tickerURL = 'https://api.coinpaprika.com/v1/tickers/';
-    // const promises = coinIDs.map(id => axios.get(tickerURL + id));
-    // const coinData = await Promise.all(promises);
-    // const coinPriceData = coinData.map(function(response) {
-    //   const coin = response.data;
-    //   return {
-    //     key: coin.id,
-    //     id: coin.id,
-    //     name: coin.name,
-    //     ticker: coin.symbol,
-    //     balance: 0,
-    //     price: formatPrice(coin.quotes['USD'].price),
-    //   };
-    // });
-
-    // //Stock
-    // const stockPriceData = stockData.map(function() {
-    //   // const coin = response.data;
-    //   // return {
-    //   //   key: coin.id,
-    //   //   id: coin.id,
-    //   //   name: coin.name,
-    //   //   ticker: coin.symbol,
-    //   //   balance: 0,
-    //   //   price: formatPrice(coin.quotes['USD'].price),
-    //   // };
-    // });
-
-    // // Retrieving prices
-    // setCoinData(coinPriceData);
-    // setStockData(coinPriceData);
-
-  } 
-
-  // useEffect(() => {
-  //   if (coinData.length === 0){
-  //     //component did mount
-  //     componentDidMount();
-  //   } else {
-  //     //component did update
-
-  //   }
-  // });
 
 
   const handleBalanceVis = () => {
@@ -109,7 +61,6 @@ function App(props) {
   }
 
 
-
   return (
     <Div>
       <AppHeader />
@@ -128,11 +79,10 @@ function App(props) {
         </Div3>
 
         <Div3>
-          <StockHeader />
-          {/* <StockList
-          stockData = {stockData}
-          showBalance = {showBalance}
-          handleRefresh = {handleRefresh} /> */}
+          <StockHeader 
+            stockData = {stockData}
+            showBalance = {showBalance}
+            handleRefresh = {handleRefresh} />
         </Div3>
 
       </Div2>

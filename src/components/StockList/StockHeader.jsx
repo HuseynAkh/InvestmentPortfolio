@@ -6,7 +6,23 @@ import StockList from './StockList'
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const COIN_COUNT = 20;
+
+const Input1 = styled.input`
+  width: 48px;
+  padding: 5px;
+`;
+
+const Input2 = styled.input`
+  width: 200px;
+  padding: 5px;
+`;
+
+const Button = styled.button`
+  padding: 5px;
+`;
+
+
+
 const formatPrice = price => parseFloat(Number(price).toFixed(3));
 
 export default function StockHeader(props) {
@@ -15,43 +31,61 @@ export default function StockHeader(props) {
     // }
 
     const [stockData, setStockData] = useState([]);
+    const [stockSearch, setStockSearch] = useState([]);
+    const [balance, setBalance] = useState([]);
 
-    const componentDidMount = async () => {
-        const response = await axios.get('https://api.coinpaprika.com/v1/coins');
-        const coinIDs = response.data.slice(0, COIN_COUNT).map(coin => coin.id);
-        const tickerURL = 'https://api.coinpaprika.com/v1/tickers/';
-        const promises = coinIDs.map(id => axios.get(tickerURL + id));
-        const coinData = await Promise.all(promises);
-        const stockPriceData = coinData.map(function(response) {
-          const coin = response.data;
-          return {
-            key: coin.id,
-            id: coin.id,
-            name: coin.name,
-            ticker: coin.symbol,
-            balance: 0,
-            price: formatPrice(coin.quotes['USD'].price),
-          };
-        });
-        //Retrieving prices
-        setStockData(stockPriceData);
+    let content = '*******';
+    if (props.showBalance ){
+      content = <>$ BalanceSum</>
     }
 
-    useEffect(() => {
-        if (stockData.length === 0){
-          //component did mount
-          componentDidMount();
-        } else {
-          //component did update
-    
-        }
-      });
+    const queryPrice = async(ticker) =>{
+      //TEMP
+      const response = await axios.get(`https://api.twelvedata.com/stocks?country=united-states&symbol=${ticker}`);
+      const price = 10;
+      //REAL
+      // const response = await axios.get(`https://api.twelvedata.com/stocks?country=united-states&symbol=${ticker}&apikey=3e4903f2a4c94528b6618350d27e4201`);
+      // const price = await axios.get(`https://api.twelvedata.com/price?symbol=${ticker}&apikey=3e4903f2a4c94528b6618350d27e4201`);
+      console.log(response.data);
+      const stockPriceData = [
+        { 
+          key: response.data.data[0].symbol,
+          name: response.data.data[0].name,
+          ticker: response.data.data[0].symbol,
+          balance: balance,
+          price: formatPrice(price.data.price)
+        },
+      ]
+      //Retrieving prices
+      // const newValue = (stockPriceData) => setStockData(stockData => [stockPriceData, ...stockData]);
+      let newValue = stockData.concat(stockPriceData);
+      setStockData(newValue);
+    }
+
+      const handleSearchChange = (e) => {
+        setStockSearch(e.target.value);
+      }
+
+      const handleBalanceChange = (e) => {
+        setBalance(e.target.value);
+      }
+
+      const handleStockSearch = () => {
+        queryPrice(stockSearch);
+        setBalance("");
+        setStockSearch("");
+      }
 
 
     return (
         <>
         <h1>Stock</h1>
-        {/* <input ref={todoNameRef} type="text" /> */}
+        <h3>{content}</h3>
+        <div>
+          <Input1 type="balance" placeholder="Balance" value={balance} onChange={handleBalanceChange} />
+          <Input2 type="search" placeholder="Search Stocks" value={stockSearch} onChange={handleSearchChange} />
+          <Button onClick={handleStockSearch}>Add to portfolio</Button>
+        </div>
 
         <StockList 
           stockData = {stockData}
