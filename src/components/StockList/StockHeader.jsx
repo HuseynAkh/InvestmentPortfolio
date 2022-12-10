@@ -33,13 +33,13 @@ export default function StockHeader(props) {
     const [stockData, setStockData] = useState([]);
     const [stockSearch, setStockSearch] = useState([]);
     const [balance, setBalance] = useState([]);
-
-    const TotalVal = 0;
+    const [totalVal, setTotalVal] = useState('0');
 
     let content = '*******';
     if (props.showBalance ){
-      content = <>$ {TotalVal}</>
+      content = <>$ {totalVal}</>
     }
+
 
     const queryPrice = async(ticker) =>{
       //TEMP
@@ -59,7 +59,10 @@ export default function StockHeader(props) {
           value: formatPrice(balance * price) // price changed for API wait
         },
       ]
-      TotalVal += (balance * price); // price changed for API wait
+      let change = (balance * price);
+      setTotalVal(parseFloat(totalVal + change)); // price changed for API wait
+      props.totalBalance(props.balance + change);
+      
       //Retrieving prices
       let newValue = stockData.concat(stockPriceData);
       setStockData(newValue);

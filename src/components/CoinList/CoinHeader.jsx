@@ -31,12 +31,12 @@ export default function CoinHeader(props) {
     const [coinData, setCoinData] = useState([]);
     const [coinSearch, setCoinSearch] = useState([]);
     const [balance, setBalance] = useState([]);
+    const [totalVal, setTotalVal] = useState('0');
     
-    const TotalVal = 0;
 
     let content = '*******';
     if (props.showBalance ){
-      content = <>$ {TotalVal}</>
+      content = <>$ {totalVal}</>
     }
 
     const componentDidMount = async () => {
@@ -57,6 +57,8 @@ export default function CoinHeader(props) {
             // value: formatPrice(balance * price)
           };
         });
+        // setTotalVal(parseFloat(totalVal + (balance * price))); // price changed for API wait
+        // props.totalBalance(props.balance + change);
         // Retrieving prices
         setCoinData(coinPriceData);
     }

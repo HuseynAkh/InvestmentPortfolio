@@ -35,10 +35,15 @@ const formatPrice = price => parseFloat(Number(price).toFixed(3));
 
 function App(props) {
 
-  const [balance, setBalance] = useState(0);
+  
   const [showBalance, setShowBalance] = useState(true);
   const [coinData, setCoinData] = useState([]);
   const [stockData, setStockData] = useState([]);
+  
+  const [balance, setBalance] = useState(0);
+
+  
+
 
 
   const handleBalanceVis = () => {
@@ -72,14 +77,18 @@ function App(props) {
       <Div2>
         
         <Div3>  
-          <CoinHeader 
+          <CoinHeader
+          balance = {balance}
+          totalBalance = {setBalance}
           coinData = {coinData}
           showBalance={showBalance} 
           handleRefresh={handleRefresh} /> 
         </Div3>
 
         <Div3>
-          <StockHeader 
+          <StockHeader
+            balance = {balance}
+            totalBalance = {setBalance}
             stockData = {stockData}
             showBalance = {showBalance}
             handleRefresh = {handleRefresh} />
