@@ -9,16 +9,20 @@ import styled from 'styled-components';
 
 const Input1 = styled.input`
   width: 48px;
-  padding: 5px;
+  padding: 8px;
+  focus: ring-2 rounded-tl rounded-bl;
 `;
 
 const Input2 = styled.input`
   width: 200px;
-  padding: 5px;
+  padding: 8px;
+  focus: ring-2 rounded-tl rounded-bl;
 `;
 
 const Button = styled.button`
-  padding: 5px;
+  padding: 8px;
+  background-color: white;
+  border-radius: 3px;
 `;
 
 
@@ -83,6 +87,14 @@ export default function StockHeader(props) {
       setStockSearch("");
     }
 
+    const handleEnterSearch = (e) => {
+      if(e.key === 'Enter'){
+        queryPrice(stockSearch);
+        setBalance("");
+        setStockSearch("");
+      }
+    }
+
 
     return (
         <>
@@ -90,7 +102,7 @@ export default function StockHeader(props) {
         <h3>{content}</h3>
         <div>
           <Input1 type="balance" placeholder="Balance" value={balance} onChange={handleBalanceChange} />
-          <Input2 type="search" placeholder="Search Stocks" value={stockSearch} onChange={handleSearchChange} />
+          <Input2 type="search" placeholder="Search Stocks..." value={stockSearch} onChange={handleSearchChange} onKeyDown={handleEnterSearch} />
           <Button onClick={handleStockSearch}>Add to portfolio</Button>
         </div>
 

@@ -6,11 +6,12 @@ const Section = styled.section`
   display: flex;
   flex-flow: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 28px;
   font-size: 2rem;
   text-align: left;
   padding: 1.5rem 1.5rem 0.3rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Segoe UI, Helvetica;
+  font-weight: 500;
 `;
 
 const Button = styled.button`

@@ -11,16 +11,20 @@ const formatPrice = price => parseFloat(Number(price).toFixed(3));
 
 const Input1 = styled.input`
   width: 48px;
-  padding: 5px;
+  padding: 8px;
+  focus: ring-2 rounded-tl rounded-bl;
 `;
 
 const Input2 = styled.input`
   width: 200px;
-  padding: 5px;
+  padding: 8px;
+  focus: ring-2 rounded-tl rounded-bl;
 `;
 
 const Button = styled.button`
-  padding: 5px;
+  padding: 8px;
+  background-color: white;
+  border-radius: 3px;
 `;
 
 export default function CoinHeader(props) {
@@ -68,6 +72,9 @@ export default function CoinHeader(props) {
 
     const handleSearchChange = (e) => {
       setCoinSearch(e.target.value);
+      if(e.key === 'Enter'){
+        handleCoinSearch();
+      };
     }
 
     const handleBalanceChange = (e) => {
@@ -80,6 +87,14 @@ export default function CoinHeader(props) {
       setCoinSearch("");
     }
 
+    const handleEnterSearch = (e) => {
+      if(e.key === 'Enter'){
+        queryPrice(coinSearch);
+        setBalance("");
+        setCoinSearch("");
+      }
+    }
+
 
 
     return (
@@ -89,7 +104,7 @@ export default function CoinHeader(props) {
 
         <div>
           <Input1 type="balance" placeholder="Balance" value={balance} onChange={handleBalanceChange} />
-          <Input2 type="search" placeholder="Search Crypto" value={coinSearch} onChange={handleSearchChange} />
+          <Input2 type="search" placeholder="Search Crypto..." value={coinSearch} onChange={handleSearchChange} onKeyDown={handleEnterSearch} />
           <Button onClick={handleCoinSearch}>Add to portfolio</Button>
         </div>
 
