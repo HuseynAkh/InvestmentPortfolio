@@ -1,8 +1,7 @@
 # **Investment Portfolio**
 
-### **React, JavaScript investment tracker.**
-[Click for live demo](https://huseynakh.github.io/InvestmentPortfolio/)
-<br />
+### **React, JavaScript investment tracker**
+### [Click for live demo](https://huseynakh.github.io/InvestmentPortfolio/)
 <img alt="Investment Portfolio Demo" width="1100px" src="./demo.gif" >
 
 
