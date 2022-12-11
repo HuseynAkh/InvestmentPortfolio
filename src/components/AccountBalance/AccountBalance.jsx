@@ -7,11 +7,11 @@ const Section = styled.section`
   flex-flow: column;
   align-items: center;
   margin-top: 28px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: left;
   padding: 1.5rem 1.5rem 0.3rem;
-  font-family: Segoe UI, Helvetica;
-  font-weight: 500;
+  font-family: Trebuchet;
+  font-weight: 400;
 `;
 
 const Button = styled.button`
@@ -22,16 +22,27 @@ const Button = styled.button`
   padding: 7px 0px 7px 0px;
 `;
 
+const P = styled.p`
+  font-weight: 600;
+  color: rgb(15,71,101);
+  margin-top: 5px;
+  margin-bottom: 0px;
+  font-size: 2rem;
+  font-family: Helvetica;
+
+`
+
 
 export default function AccountBalance(props) {
   const buttonText = props.showBalance ? 'Hide Balance' : 'Show Balance';
   let content = '*******';
   if ( props.showBalance ){
-    content = <>Balance: ${props.amount}</>
+    content = <>${props.amount}</>
   }
   return (
     <Section>
-        {content}
+        <>Balance </>  
+        <P> {content} </P>
         <Button onClick={props.handleBalanceVis}>{buttonText}</Button>
     </Section>
   );

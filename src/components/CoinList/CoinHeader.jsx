@@ -1,12 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 import CoinList from './CoinList';
-
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const COIN_COUNT = 20;
 const formatPrice = price => parseFloat(Number(price).toFixed(3));
 
 const Input1 = styled.input`

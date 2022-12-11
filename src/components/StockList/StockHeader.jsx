@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 import StockList from './StockList'
 
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 
@@ -48,10 +47,10 @@ export default function StockHeader(props) {
     const queryPrice = async(ticker) =>{
       //TEMP
       const response = await axios.get(`https://api.twelvedata.com/stocks?country=united-states&symbol=${ticker}`);
-      const price = 10;
+      // const price = 10;
       //REAL
       // const response = await axios.get(`https://api.twelvedata.com/stocks?country=united-states&symbol=${ticker}&apikey=3e4903f2a4c94528b6618350d27e4201`);
-      // const price = await axios.get(`https://api.twelvedata.com/price?symbol=${ticker}&apikey=3e4903f2a4c94528b6618350d27e4201`);
+      const price = await axios.get(`https://api.twelvedata.com/price?symbol=${ticker}&apikey=3e4903f2a4c94528b6618350d27e4201`);
       console.log(response.data);
       const stockPriceData = [
         { 
@@ -59,11 +58,11 @@ export default function StockHeader(props) {
           name: response.data.data[0].name,
           ticker: response.data.data[0].symbol,
           balance: formatPrice(balance),
-          price: formatPrice(price), // price changed for API wait
-          value: formatPrice(balance * price) // price changed for API wait
+          price: formatPrice(price.data.price), // price changed for API wait
+          value: formatPrice(balance * price.data.price) // price changed for API wait
         },
       ]
-      let change = formatPrice(balance * price);
+      let change = formatPrice(balance * price.data.price);
       //Data to Float & String (add/remove commas)
       setTotalVal((formatPrice((parseFloat((totalVal).replace(/,/g, ''))) + change)).toLocaleString());
       props.totalBalance((formatPrice((parseFloat(((props.balance) + "").replace(/,/g, ''))) + change)).toLocaleString());
